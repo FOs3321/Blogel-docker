@@ -1,0 +1,9 @@
+CCOMPILE=mpic++
+JPLATFORM=amd64
+PLATFORM=Linux-amd64-64
+CPPFLAGS= -I$(HADOOP_HOME)/src/c++/libhdfs -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux -I$(BLOGEL_HOME) 
+LIB = -L$(HADOOP_HOME)/c++/$(PLATFORM)/lib -L$(JAVA_HOME)/jre/lib/$(JPLATFORM)/server/
+LDFLAGS = -ljvm -lhdfs -Wno-deprecated -O3
+
+%: %.cpp
+	$(CCOMPILE) $< $(CPPFLAGS) $(LIB) $(LDFLAGS) -o $@
